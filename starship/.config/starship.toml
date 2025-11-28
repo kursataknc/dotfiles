@@ -61,7 +61,7 @@ Windows = ""
 [time]
 disabled = false
 style = "bold #666666"
-format = "at [$time]($style)"
+format = "[$time]($style)"
 time_format = "%H:%M:%S"
 
 [cmd_duration]

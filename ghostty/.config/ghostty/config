@@ -4,7 +4,7 @@
 
 # Shell
 command = /opt/homebrew/bin/nu --login
-command = /opt/homebrew/bin/tmux new-session -A -s main
+# command = /opt/homebrew/bin/tmux new-session -A -s main
 
 # Appearance
 theme = catppuccin-mocha
@@ -12,11 +12,11 @@ font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 12
 
 # Window & Background
-background-opacity = 0.9
-background-blur-radius = 50
+background-opacity = 0.95
+background-blur-radius = 20
 window-decoration = true
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 5
+window-padding-y = 5
 
 # Cursor
 cursor-style = block
