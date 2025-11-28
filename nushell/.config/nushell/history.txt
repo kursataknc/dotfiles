@@ -13,3 +13,5 @@ cd dotfiles/
 clear
 stow .
 clear
+git add .
+git status
