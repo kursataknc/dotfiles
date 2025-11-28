@@ -1,0 +1,182 @@
+# ~/.config/starship.toml
+
+# Global Configuration
+add_newline = true
+command_timeout = 2000
+palette = "custom_lean"
+
+# ------------------------------------------------------------------------------
+# LAYOUT CONFIGURATION
+# ------------------------------------------------------------------------------
+
+# Left Prompt
+format = """
+$os\
+$directory\
+$character\
+"""
+
+# Right Prompt
+# Yeni eklenenler: $jobs, $memory_usage, $battery
+right_format = """
+$git_branch\
+$git_status\
+$jobs\
+$nix_shell\
+$python\
+$golang\
+$nodejs\
+$rust\
+$docker_context\
+$kubernetes\
+$aws\
+$memory_usage\
+$cmd_duration\
+$battery\
+$time\
+"""
+
+# ------------------------------------------------------------------------------
+# CORE SYMBOLS
+# ------------------------------------------------------------------------------
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold yellow)"
+
+# ------------------------------------------------------------------------------
+# SYSTEM CONTEXT & UTILS (YENİ EKLENENLER)
+# ------------------------------------------------------------------------------
+
+[os]
+disabled = false
+style = "bold white"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Macos = ""
+Linux = ""
+Windows = ""
+
+[time]
+disabled = false
+style = "bold #666666"
+format = "at [$time]($style)"
+time_format = "%H:%M:%S"
+
+[cmd_duration]
+min_time = 3000
+format = "took [$duration](bold yellow) "
+
+[jobs]
+symbol = "⚙️"
+style = "bold blue"
+number_threshold = 1
+format = "[$symbol]($style) "
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+display = [
+  { threshold = 30, style = "bold red" }
+]
+disabled = false
+format = "[$symbol$percentage]($style) "
+
+[memory_usage]
+disabled = false
+threshold = 85
+symbol = "🧠 "
+style = "bold red"
+format = "[$symbol${ram}]($style) "
+
+# ------------------------------------------------------------------------------
+# DIRECTORY & GIT
+# ------------------------------------------------------------------------------
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " 🔒"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+deleted = "✘"
+modified = "!"
+staged = "+"
+renamed = "»"
+untracked = "?"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+format = '([$all_status$ahead_behind]($style) )'
+
+# ------------------------------------------------------------------------------
+# CLOUD & CONTAINERS
+# ------------------------------------------------------------------------------
+
+[kubernetes]
+symbol = "☸ "
+style = "bold cyan"
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[aws]
+symbol = "  "
+style = "bold #ff9900"
+format = '[$symbol($profile )(\($region\) )]($style)'
+
+[docker_context]
+symbol = " "
+style = "blue"
+format = '[$symbol$context]($style) '
+
+# ------------------------------------------------------------------------------
+# LANGUAGES & TOOLCHAINS
+# ------------------------------------------------------------------------------
+
+[python]
+symbol = " "
+style = "bold yellow"
+format = 'via [${symbol}${version}( \($virtualenv\))]($style) '
+
+[golang]
+symbol = " "
+style = "bold cyan"
+format = 'via [$symbol($version )]($style)'
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = 'via [$symbol($version )]($style)'
+
+[rust]
+symbol = " "
+style = "bold red"
+format = 'via [$symbol($version )]($style)'
+
+[nix_shell]
+symbol = " "
+style = "bold blue"
+format = 'via [$symbol$state( \($name\))]($style) '
+
+# ------------------------------------------------------------------------------
+# COLOR PALETTE DEFINITION
+# ------------------------------------------------------------------------------
+[palettes.custom_lean]
+black = "#000000"
+red = "#d75f5f"
+green = "#87d700"
+yellow = "#d7d700"
+blue = "#5f87d7"
+purple = "#af5fd7"
+cyan = "#00d7ff"
+white = "#ffffff"
