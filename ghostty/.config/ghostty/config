@@ -1,0 +1,44 @@
+# ==============================================================================
+# GHOSTTY TERMINAL CONFIGURATION
+# ==============================================================================
+
+# Shell
+command = /opt/homebrew/bin/nu --login
+
+# Appearance
+theme = catppuccin-mocha
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 12
+
+# Window & Background
+background-opacity = 0.9
+background-blur-radius = 50
+window-decoration = true
+window-padding-x = 10
+window-padding-y = 10
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Mouse
+mouse-hide-while-typing = true
+clipboard-trim-trailing-spaces = true
+
+# Performance
+macos-non-native-fullscreen = true
+
+# Environment
+env = XDG_CONFIG_HOME=/Users/kursataknc/.config
+
+# Keybindings (macOS style)
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+n=new_window
+keybind = super+t=new_tab
+keybind = super+w=close_surface
+keybind = super+shift+t=reload_config
+
+# Font features (ligatures)
+font-feature = -calt
+font-feature = -liga

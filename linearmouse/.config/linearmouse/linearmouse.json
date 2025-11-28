@@ -1,0 +1,53 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xa882",
+          "productName" : "WLMOUSE 1K RECEIVER",
+          "serialNumber" : "34C1BD43",
+          "vendorID" : "0x36a7"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 2.5,
+        "disableAcceleration" : false,
+        "redirectsToScroll" : false,
+        "speed" : 0.1
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x9b",
+          "productName" : "ProClickM",
+          "vendorID" : "0x1532"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 1,
+        "disableAcceleration" : false,
+        "speed" : 0.1
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x9a",
+          "productName" : "ProClickM",
+          "serialNumber" : "000000000000",
+          "vendorID" : "0x1532"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 3,
+        "disableAcceleration" : false,
+        "speed" : 0.08
+      }
+    }
+  ]
+}

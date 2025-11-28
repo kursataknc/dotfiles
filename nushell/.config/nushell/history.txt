@@ -1,0 +1,15 @@
+cd dotfiles
+clear
+cd dotfiles
+clear
+config nu
+cd dotfiles
+starship explain
+cd dotfiles/
+cd dotfiles
+cd dotfiles/
+clear
+cd dotfiles/
+clear
+stow .
+clear
