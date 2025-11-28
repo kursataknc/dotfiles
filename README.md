@@ -264,6 +264,283 @@ stow -D */  # Unstow all packages
   - `help commands` → List all commands
   - `config reload` → Reload config without restart
 
+---
+
+## ⌨️ Keyboard Shortcuts & Aliases
+
+Complete reference for all shortcuts, aliases, and keybindings across the system.
+
+<details>
+<summary><b>📂 Navigation & File Management</b></summary>
+
+### Shell Aliases (Zsh & Nushell)
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `..` | `cd ..` | Go up one directory |
+| `...` | `cd ../..` | Go up two directories |
+| `....` | `cd ../../..` | Go up three directories |
+| `l` | `eza -l --icons --git -a` | List all files with icons |
+| `ll` | `ls -l` (nu) / `eza` (zsh) | Long list format |
+| `lt` | `eza --tree --level=2 --long --icons --git` | Tree view (2 levels) |
+| `ltree` | `eza --tree --level=2 --icons --git` | Tree view without details |
+| `la` | `tree` | Tree view (all files) |
+
+### Custom Functions
+
+| Function | Usage | Description |
+|----------|-------|-------------|
+| `cx <dir>` | `cx ~/projects` | Change directory and list contents |
+| `fcd` | `fcd` | Fuzzy find and cd into directory |
+| `fv` | `fv` | Fuzzy find and open file in nvim |
+| `f` | `f` | Fuzzy find file and copy path to clipboard |
+| `rr` | `rr` | Launch Ranger file manager |
+| `ff` | `ff` (nu only) | Fuzzy find window (Aerospace) |
+
+</details>
+
+<details>
+<summary><b>📝 Editor & Tools</b></summary>
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `v` | `nvim` | Open Neovim |
+| `cl` | `clear` | Clear terminal |
+| `c` | `clear` | Clear terminal (Nushell) |
+| `cat` | `bat` | Better cat with syntax highlighting |
+| `py` | `python3` | Python 3 shortcut |
+
+</details>
+
+<details>
+<summary><b>🔧 Git Shortcuts</b></summary>
+
+### Basic Operations
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `gst` | `git status` | Show working tree status |
+| `ga` | `git add -p` | Interactive staging |
+| `gadd` | `git add` | Add files to staging |
+| `gc` | `git commit -m` | Commit with message |
+| `gca` | `git commit -a -m` | Commit all changes with message |
+| `gp` | `git push origin HEAD` | Push current branch |
+| `gpu` | `git pull origin` | Pull from origin |
+
+### Branch Management
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `gb` | `git branch` | List branches |
+| `gba` | `git branch -a` | List all branches (including remote) |
+| `gco` | `git checkout` | Switch branches |
+| `gcoall` | `git checkout -- .` | Discard all changes |
+
+### Viewing & Inspection
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `glog` | `git log --graph --pretty` | Beautiful git log with graph |
+| `gdiff` | `git diff` | Show changes |
+| `gr` | `git remote` | Show remote repositories |
+| `gre` | `git reset` | Reset current HEAD |
+
+</details>
+
+<details>
+<summary><b>🐳 Docker Shortcuts</b></summary>
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `dco` | `docker compose` | Docker Compose shortcut |
+| `dps` | `docker ps` | List running containers |
+| `dpa` | `docker ps -a` | List all containers |
+| `dl` | `docker ps -l -q` | Get last container ID |
+| `dx` | `docker exec -it` | Execute interactive command in container |
+
+</details>
+
+<details>
+<summary><b>☸️ Kubernetes Shortcuts</b></summary>
+
+### Basic Commands
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `k` | `kubectl` | Kubernetes CLI |
+| `ka` | `kubectl apply -f` | Apply configuration |
+| `kg` | `kubectl get` | Get resources |
+| `kd` | `kubectl describe` | Describe resources |
+| `kdel` | `kubectl delete` | Delete resources |
+| `kl` | `kubectl logs -f` | Follow logs |
+
+### Resource Shortcuts
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `kgpo` | `kubectl get pod` | List pods |
+| `kgd` | `kubectl get deployments` | List deployments |
+| `ke` | `kubectl exec -it` | Execute command in pod |
+
+### Context Management
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `kc` | `kubectx` | Switch Kubernetes context |
+| `kns` | `kubens` | Switch namespace |
+| `kcns` | `kubectl config set-context --current --namespace` | Set namespace for current context |
+
+</details>
+
+<details>
+<summary><b>🔐 Network & Security Tools</b></summary>
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `http` | `xh` | Modern HTTP client |
+| `nm` | `nmap -sC -sV -oN nmap` | Nmap scan with scripts |
+| `server` | `python -m http.server 4445` | Start local HTTP server |
+| `tunnel` | `ngrok http 4445` | Expose local server with ngrok |
+| `fuzz` | `ffuf -w ... -mc all -u` | Web fuzzing |
+| `gobust` | `gobuster dir --wordlist ...` | Directory bruteforcing |
+
+</details>
+
+<details>
+<summary><b>⌨️ Terminal Keybindings</b></summary>
+
+### Zsh (Vi Mode)
+
+| Keys | Action | Description |
+|------|--------|-------------|
+| `jj` | Normal mode | Exit insert mode (alternative to ESC) |
+| `^L` | Forward word | Jump to next word |
+| `^k` | Previous line | Move up in history |
+| `^j` | Next line | Move down in history |
+| `^w` | Execute suggestion | Run suggested command |
+| `^e` | Accept suggestion | Accept and insert suggestion |
+| `^u` | Toggle suggestions | Enable/disable suggestions |
+
+### Ghostty Terminal
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| `Cmd+C` | Copy | Copy selected text |
+| `Cmd+V` | Paste | Paste from clipboard |
+| `Cmd+N` | New window | Open new terminal window |
+| `Cmd+T` | New tab | Open new tab |
+| `Cmd+W` | Close | Close current tab/window |
+| `Cmd+Shift+T` | Reload config | Reload Ghostty configuration |
+
+</details>
+
+<details>
+<summary><b>🪟 Tmux Shortcuts</b></summary>
+
+### Session Management
+
+```bash
+tmux                        # Start new session
+tmux new -s <name>         # Named session
+tmux ls                    # List sessions
+tmux attach -t <name>      # Attach to session
+tmux kill-session -t <name> # Kill session
+```
+
+**Prefix Key**: `Ctrl+b` (press first, then command key)
+
+### 🚀 Custom Enhanced Shortcuts
+
+#### Quick Window Switching (NO PREFIX!)
+- `Alt+1` to `Alt+9` → Jump directly to window 1-9
+
+#### Split Shortcuts
+- `Prefix + |` → Split vertical (easier)
+- `Prefix + -` → Split horizontal (easier)
+- `Prefix + %` → Split vertical (original)
+- `Prefix + "` → Split horizontal (original)
+
+#### Vim-Style Navigation
+- `Prefix + h/j/k/l` → Navigate panes (left/down/up/right)
+- `Prefix + Shift+H/J/K/L` → Resize panes
+
+#### Quick Actions
+- `Prefix + r` → Reload config
+- `Prefix + z` → Toggle zoom pane
+- `Prefix + !` → Break pane to new window
+
+### Window Management
+- `Prefix + c` → New window
+- `Prefix + n/p` → Next/Previous window
+- `Prefix + ,` → Rename window
+- `Prefix + &` → Kill window
+
+### Copy Mode (Vi-style)
+- `Prefix + [` → Enter copy mode
+- `v` → Start selection
+- `y` → Copy selection
+- `/` or `?` → Search forward/backward
+
+### Session Control
+- `Prefix + d` → Detach session
+- `Prefix + s` → List sessions
+- `Prefix + $` → Rename session
+
+</details>
+
+<details>
+<summary><b>🔄 History & Smart Navigation</b></summary>
+
+### Atuin (Enhanced History)
+- `Ctrl+R` → Interactive history search
+- `atuin search` → Full search with filters
+- `atuin stats` → Command statistics
+
+### Zoxide (Smart CD)
+- `z <query>` → Jump to directory matching query
+- `zi` → Interactive directory selection
+- `z -` → Go to previous directory
+
+### FZF Integration
+- `Ctrl+T` → Fuzzy find files
+- `Ctrl+R` → Fuzzy find history (if no Atuin)
+- `Alt+C` → Fuzzy find and cd into directory
+
+</details>
+
+<details>
+<summary><b>💡 Pro Tips & Workflows</b></summary>
+
+### Command Combinations
+
+```bash
+# Quick commit and push
+gc "feat: add feature" && gp
+
+# Kubernetes pod logs
+kgpo | fzf | xargs kubectl logs -f
+
+# Development workflow
+cx ~/projects/myapp  # cd and list
+v .                  # open nvim
+gst                  # check status
+```
+
+### Nushell Specific
+- `config reload` → Reload Nushell config
+- `help commands` → List all commands
+- `which <command>` → Show command location
+- `$env` → Show all environment variables
+
+### Zsh Specific
+- `source ~/.zshrc` → Reload Zsh config
+- `bindkey` → Show all keybindings
+- `alias` → Show all aliases
+
+</details>
+
+---
+
 ## 🐛 Troubleshooting
 
 ### Starship not showing git info in Nushell
