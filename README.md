@@ -12,7 +12,7 @@ Modern macOS development environment dotfiles, managed with GNU Stow.
 - **Font**: JetBrainsMono Nerd Font
 - **Keyboard**: Karabiner-Elements
 - **Mouse**: LinearMouse
-- **Tools**: fzf, eza, bat, zoxide, atuin, direnv
+- **Tools**: fzf, eza, bat, zoxide, direnv
 
 ## 🚀 Quick Start
 
@@ -93,7 +93,7 @@ brew install --cask linearmouse
 
 ```bash
 # History & Navigation (recommended)
-brew install zoxide atuin tmux
+brew install zoxide tmux
 
 # Cloud & DevOps
 brew install kubectl kubectx helm
@@ -116,12 +116,8 @@ source ~/.zshrc
 # Zoxide (smart cd)
 eval "$(zoxide init zsh)"
 
-# Atuin (enhanced history)
-eval "$(atuin init zsh)"
-
-# Already configured in .zshrc, just verify they work
+# Already configured in .zshrc, just verify it works
 z <directory>  # test zoxide
-atuin search   # test atuin
 ```
 
 #### For Nushell
@@ -129,13 +125,26 @@ atuin search   # test atuin
 ```bash
 # Generate integration files (run once)
 zoxide init nushell | save -f ~/.zoxide.nu
-atuin init nu | save -f ~/.local/share/atuin/init.nu
 starship init nu | save -f ~/.cache/starship/init.nu
 
 # Uncomment these lines in ~/.config/nushell/config.nu:
 # source ~/.zoxide.nu
-# source ~/.local/share/atuin/init.nu
 ```
+
+#### Customizing Nushell Config Location
+
+By default, Nushell looks for config files in `~/.config/nushell/`. To use a custom location (e.g., from this dotfiles repo), set environment variables:
+
+```bash
+# In your shell profile (~/.zshrc or ~/.bashrc), add:
+export NU_CONFIG_FILE="$HOME/dotfiles/nushell/.config/nushell/config.nu"
+export NU_ENV_FILE="$HOME/dotfiles/nushell/.config/nushell/env.nu"
+
+# Or set them before launching Nushell:
+NU_CONFIG_FILE=~/dotfiles/nushell/.config/nushell/config.nu nu
+```
+
+These environment variables override the default paths. See the [Nushell configuration documentation](https://www.nushell.sh/book/configuration.html) for more details.
 
 ### 2. Configure Git
 
@@ -491,11 +500,6 @@ tmux kill-session -t <name> # Kill session
 <details>
 <summary><b>🔄 History & Smart Navigation</b></summary>
 
-### Atuin (Enhanced History)
-- `Ctrl+R` → Interactive history search
-- `atuin search` → Full search with filters
-- `atuin stats` → Command statistics
-
 ### Zoxide (Smart CD)
 - `z <query>` → Jump to directory matching query
 - `zi` → Interactive directory selection
@@ -574,4 +578,4 @@ MIT
 
 ---
 
-**Maintained by**: [Your Name](https://github.com/YOUR_USERNAME)
+**Maintained by**: [Your Name](https://github.com/kursataknc)
