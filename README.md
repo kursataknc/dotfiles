@@ -38,6 +38,7 @@ stow zshrc       # Zsh configuration
 stow nushell     # Nushell configuration
 stow starship    # Starship prompt
 stow ghostty     # Ghostty terminal
+stow tmux        # Tmux terminal multiplexer
 stow karabiner   # Keyboard remapping
 stow linearmouse # Mouse settings
 
@@ -65,7 +66,8 @@ brew install \
 # Shell enhancements
 brew install \
   zsh-autosuggestions \
-  direnv
+  direnv \
+  tmux
 
 # Development tools
 brew install \
@@ -93,7 +95,7 @@ brew install --cask linearmouse
 
 ```bash
 # History & Navigation (recommended)
-brew install zoxide tmux
+brew install zoxide
 
 # Cloud & DevOps
 brew install kubectl kubectx helm
@@ -146,7 +148,44 @@ NU_CONFIG_FILE=~/dotfiles/nushell/.config/nushell/config.nu nu
 
 These environment variables override the default paths. See the [Nushell configuration documentation](https://www.nushell.sh/book/configuration.html) for more details.
 
-### 2. Configure Git
+### 2. Tmux Setup
+
+```bash
+# 1. Install TPM (Tmux Plugin Manager)
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+
+# 2. Stow tmux configuration
+cd ~/dotfiles
+stow tmux
+
+# 3. Start tmux
+tmux
+
+# 4. Inside tmux, press: Ctrl+A + I (capital I) to install all plugins
+# Wait for plugins to download and install (you'll see a success message)
+# Press Ctrl+A + r to reload config after installation
+```
+
+**Important:** TPM only installs the plugin manager itself. You **must** press `Ctrl+A + I` inside tmux to install all plugins from your config. This will download all plugins to `~/.config/tmux/plugins/`.
+
+**Features:**
+- Prefix key: `Ctrl+A` (instead of default `Ctrl+B`)
+- Catppuccin Mocha theme on top status bar
+- Vi-style keybindings in copy mode
+- Auto-restore sessions on restart
+- Custom plugins for session management (SessionX), floating panes (Floax), and URL handling
+
+**Key plugins:**
+- TPM (plugin manager), tmux-sensible, tmux-yank
+- tmux-resurrect & tmux-continuum (session persistence)
+  - Sessions auto-save every 15 minutes
+  - Manual save: `Ctrl+A` + `Ctrl+S`
+  - Manual restore: `Ctrl+A` + `Ctrl+R`
+  - "No resurrect file" means no session saved yet
+- tmux-thumbs (quick text copying), tmux-fzf-url (URL opener)
+- catppuccin-tmux, tmux-sessionx, tmux-floax (custom forks)
+
+### 3. Configure Git
 
 ```bash
 git config --global user.name "Your Name"
@@ -154,7 +193,7 @@ git config --global user.email "your.email@example.com"
 git config --global core.editor "nvim"
 ```
 
-### 3. Set Default Shell (Optional)
+### 4. Set Default Shell (Optional)
 
 ```bash
 # If you want to use Nushell as default
@@ -164,13 +203,13 @@ chsh -s $(which nu)
 # Or keep using Zsh (already default on macOS)
 ```
 
-### 4. Ghostty Terminal
+### 5. Ghostty Terminal
 
 - Open Ghostty
 - Theme will auto-load (Catppuccin Mocha)
 - Default shell is set to Nushell in config
 
-### 5. Karabiner-Elements
+### 6. Karabiner-Elements
 
 - Open Karabiner-Elements
 - Grant necessary permissions in System Settings
@@ -446,7 +485,9 @@ Complete reference for all shortcuts, aliases, and keybindings across the system
 <details>
 <summary><b>🪟 Tmux Shortcuts</b></summary>
 
-### Session Management
+> **Prefix Key**: `Ctrl+A` (press this before any command below)
+
+### Sessions
 
 ```bash
 tmux                        # Start new session
@@ -456,44 +497,75 @@ tmux attach -t <name>      # Attach to session
 tmux kill-session -t <name> # Kill session
 ```
 
-**Prefix Key**: `Ctrl+b` (press first, then command key)
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `Ctrl+D` | Detach from session |
+| `Ctrl+A` + `S` | Choose session from list |
+| `Ctrl+A` + `$` | Rename current session |
+| `Ctrl+A` + `o` | SessionX: fuzzy session switcher |
 
-### 🚀 Custom Enhanced Shortcuts
+### Windows
 
-#### Quick Window Switching (NO PREFIX!)
-- `Alt+1` to `Alt+9` → Jump directly to window 1-9
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `Ctrl+C` | Create new window (at HOME) |
+| `Ctrl+A` + `w` or `Ctrl+W` | List all windows |
+| `Ctrl+A` + `r` | Rename current window |
+| `Ctrl+A` + `"` | Choose window from list |
+| `Ctrl+A` + `H` | Previous window |
+| `Ctrl+A` + `L` | Next window |
+| `Ctrl+A` + `Ctrl+A` | Switch to last window |
 
-#### Split Shortcuts
-- `Prefix + |` → Split vertical (easier)
-- `Prefix + -` → Split horizontal (easier)
-- `Prefix + %` → Split vertical (original)
-- `Prefix + "` → Split horizontal (original)
+### Panes (Splits)
 
-#### Vim-Style Navigation
-- `Prefix + h/j/k/l` → Navigate panes (left/down/up/right)
-- `Prefix + Shift+H/J/K/L` → Resize panes
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `v` | Split vertically (side by side) |
+| `Ctrl+A` + `s` | Split horizontally (top/bottom) |
+| `Ctrl+A` + `\|` | Split window (default) |
+| `Ctrl+A` + `h/j/k/l` | Navigate panes (vim-style) |
+| `Ctrl+A` + `Ctrl+L` or `l` | Refresh client |
+| `Ctrl+A` + `z` | Toggle pane zoom (fullscreen) |
+| `Ctrl+A` + `c` | Kill current pane |
+| `Ctrl+A` + `x` | Swap pane down |
+| `Ctrl+A` + `*` | Synchronize panes (toggle) |
+| `Ctrl+A` + `P` | Toggle pane border status |
 
-#### Quick Actions
-- `Prefix + r` → Reload config
-- `Prefix + z` → Toggle zoom pane
-- `Prefix + !` → Break pane to new window
+### Pane Resizing
 
-### Window Management
-- `Prefix + c` → New window
-- `Prefix + n/p` → Next/Previous window
-- `Prefix + ,` → Rename window
-- `Prefix + &` → Kill window
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `,` | Resize pane left (20 cols) |
+| `Ctrl+A` + `.` | Resize pane right (20 cols) |
+| `Ctrl+A` + `-` | Resize pane down (7 rows) |
+| `Ctrl+A` + `=` | Resize pane up (7 rows) |
 
 ### Copy Mode (Vi-style)
-- `Prefix + [` → Enter copy mode
-- `v` → Start selection
-- `y` → Copy selection
-- `/` or `?` → Search forward/backward
 
-### Session Control
-- `Prefix + d` → Detach session
-- `Prefix + s` → List sessions
-- `Prefix + $` → Rename session
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `[` | Enter copy mode |
+| `v` | Begin selection (in copy mode) |
+| `y` | Copy selection and exit |
+| `q` | Exit copy mode |
+| `/` | Search forward |
+| `?` | Search backward |
+
+### Plugins & System
+
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl+A` + `I` | Install plugins (TPM) |
+| `Ctrl+A` + `U` | Update plugins (TPM) |
+| `Ctrl+A` + `r` | Reload tmux config (with message) |
+| `Ctrl+A` + `R` | Reload tmux config (silent) |
+| `Ctrl+A` + `Ctrl+X` | Lock server |
+| `Ctrl+A` + `p` | Floax: floating pane |
+| `Ctrl+A` + `u` | FZF URL: open URLs |
+| `Ctrl+A` + `Space` | Thumbs: quick copy text |
+| `Ctrl+A` + `K` | Clear terminal |
+| `Ctrl+A` + `:` | Command prompt |
+| `Ctrl+A` + `?` | List all key bindings |
 
 </details>
 
