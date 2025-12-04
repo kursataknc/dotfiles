@@ -9,7 +9,7 @@ command = /opt/homebrew/bin/nu --login
 # Appearance
 theme = catppuccin-mocha
 font-family = "JetBrainsMono Nerd Font Mono"
-font-size = 12
+font-size = 14
 
 # Window & Background
 background-opacity = 0.95
