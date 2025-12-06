@@ -145,20 +145,34 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info $lavender $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		"hostname $mauve $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+		"tmux_session_info $lavender $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		"macos_notification_count $maroon $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"mode_indicator $peach $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+		"mode_indicator $pink $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+
+		"$(
+			if (($(tp_cpu_temp_at_least 65))); then
+				echo "cpu_temp $maroon $surface1 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+			else
+				echo "cpu_temp $sapphire $surface1 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+			fi
+		)"
+
+	    "$(
+	      if (($(tp_mem_used_percentage_at_least 90))); then
+	        echo "mem_used $maroon $surface1 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+	      elif (($(tp_mem_used_percentage_at_least 75))); then
+	      	echo "mem_used $peach $surface1 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+	      else
+				echo "mem_used $teal $surface1 ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+	      fi
+	    )"
+
 		#"ifstat 30 255"
+		"my_ifstat_sys $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		"lan_ip $sapphire $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN} no_sep_bg_color no_sep_fg_color right_disable"
 		"wan_ip $sapphire $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"my_ifstat_sys $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"vcs_branch $subtext1 $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} $thm_bg"
-		"vcs_compare $teal $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"vcs_staged $teal $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"vcs_modified $peach $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"vcs_others $subtext0 $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 	)
 fi
 
@@ -168,34 +182,23 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		# "earthquake 3 0"
 		"pwd $mauve $surface0"
 		#"mailcount 9 255"
-		"now_playing 234 37 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		#"cpu 240 136"
+		"vcs_branch 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+		"vcs_modified 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+		"vcs_staged 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+		"vcs_compare 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+		"vcs_others $subtext0 $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+		"now_playing 234 37 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		#"load 237 167"
 		#"tmux_mem_cpu_load 234 136"
 
-		"$(
-			if (($(tp_cpu_temp_at_least 65))); then
-				echo "cpu_temp $maroon $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-			else
-				echo "cpu_temp $sapphire $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-			fi
-		)"
-	    "$(
-	      if (($(tp_mem_used_percentage_at_least 90))); then
-	        echo "mem_used $maroon $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-	      elif (($(tp_mem_used_percentage_at_least 75))); then
-	      	echo "mem_used $peach $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-	      else
-				echo "mem_used $teal $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-	      fi
-	    )"
 		#"battery $blue $thm_bg"
 		"weather $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
-		"date_day $lavender $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-		"date $lavender $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color left_disable"
-		"time $lavender $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color left_disable"
+		"date_day $pink $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+		"date $pink $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color left_disable"
+		"time $pink $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color left_disable"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN} no_sep_bg_color no_sep_fg_color left_disable"
 	)
 fi
