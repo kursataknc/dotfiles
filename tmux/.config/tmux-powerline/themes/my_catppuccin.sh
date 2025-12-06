@@ -152,7 +152,7 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"ifstat 30 255"
 		"lan_ip $sapphire $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN} no_sep_bg_color no_sep_fg_color right_disable"
 		"wan_ip $sapphire $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-		"ifstat_sys $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+		"my_ifstat_sys $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		"vcs_branch $subtext1 $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} $thm_bg"
 		"vcs_compare $teal $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
@@ -189,7 +189,6 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 				echo "mem_used $teal $surface1 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 	      fi
 	    )"
-
 		#"battery $blue $thm_bg"
 		"weather $rosewater $thm_bg ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
