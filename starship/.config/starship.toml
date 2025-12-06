@@ -18,9 +18,9 @@ $character\
 
 # Right Prompt
 # Yeni eklenenler: $jobs, $memory_usage, $battery
+# $git_branch\
+# $git_status\
 right_format = """
-$git_branch\
-$git_status\
 $jobs\
 $nix_shell\
 $python\
