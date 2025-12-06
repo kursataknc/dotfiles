@@ -183,7 +183,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		"pwd $mauve $surface0"
 		#"mailcount 9 255"
 		#"cpu 240 136"
-		"vcs_branch 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+		"vcs_branch 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}"
 		"vcs_modified 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		"vcs_staged 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
 		"vcs_compare 255 198 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
