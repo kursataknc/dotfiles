@@ -166,9 +166,9 @@
 
 # ifstat.sh {
 	# Symbol for Download.
-	# export TMUX_POWERLINE_SEG_IFSTAT_DOWN_SYMBOL="⇊"
+	export TMUX_POWERLINE_SEG_IFSTAT_DOWN_SYMBOL="↓"
 	# Symbol for Upload.
-	# export TMUX_POWERLINE_SEG_IFSTAT_UP_SYMBOL="⇈"
+	export TMUX_POWERLINE_SEG_IFSTAT_UP_SYMBOL="↑"
 	# Symbol for Ethernet.
 	# export TMUX_POWERLINE_SEG_IFSTAT_ETHERNET_SYMBOL="󰈀"
 	# Symbol for WLAN.
@@ -176,12 +176,13 @@
 	# Symbol for WWAN.
 	# export TMUX_POWERLINE_SEG_IFSTAT_WWAN_SYMBOL=""
 	# Separator for Interfaces.
-	# export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_SEPARATOR=" | "
+	export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_SEPARATOR=" | "
 	# Space separated list of interface names to be excluded. substring match, regexp can be used.
 	# Examples:
 	# export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_EXCLUDES="tun" # will exclude 'tun0', 'utun0', 'itun', 'tun08127387'
 	# export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_EXCLUDES="tun0 tuntun" # will exclude 'tun0', 'utun0', 'tuntun'
 	# export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_EXCLUDES="^tun0$ ^tun1$" # excludes exactly 'tun0' and 'tun1'
+	
 	# Default:
 	# export TMUX_POWERLINE_SEG_IFSTAT_INTERFACE_EXCLUDES="^u?tun[0-9]+$"
 # }
@@ -199,7 +200,7 @@
 
 # lan_ip.sh {
 	# Symbol for LAN IP.
-	# export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL="ⓛ "
+	export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL="󰩟 "
 	# Symbol colour for LAN IP
 	# export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL_COLOUR="255"
 # }
