@@ -17,12 +17,11 @@ $character\
 """
 
 # Right Prompt
-# Yeni eklenenler: $jobs, $memory_usage, $battery
-# $git_branch\
-# $git_status\
 right_format = """
 $jobs\
 $nix_shell\
+$git_branch\
+$git_status\
 $python\
 $golang\
 $nodejs\
@@ -30,10 +29,6 @@ $rust\
 $docker_context\
 $kubernetes\
 $aws\
-$memory_usage\
-$cmd_duration\
-$battery\
-$time\
 """
 
 # ------------------------------------------------------------------------------
@@ -59,12 +54,13 @@ Linux = ""
 Windows = ""
 
 [time]
-disabled = false
+disabled = true
 style = "bold #666666"
 format = "[$time]($style)"
 time_format = "%H:%M:%S"
 
 [cmd_duration]
+disabled = true
 min_time = 3000
 format = "took [$duration](bold yellow) "
 
@@ -75,17 +71,17 @@ number_threshold = 1
 format = "[$symbol]($style) "
 
 [battery]
+disabled = true
 full_symbol = "🔋 "
 charging_symbol = "⚡️ "
 discharging_symbol = "💀 "
 display = [
   { threshold = 30, style = "bold red" }
 ]
-disabled = false
 format = "[$symbol$percentage]($style) "
 
 [memory_usage]
-disabled = false
+disabled = true
 threshold = 85
 symbol = "🧠 "
 style = "bold red"
