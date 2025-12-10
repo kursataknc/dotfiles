@@ -3,7 +3,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        -- Web Development
+        -- Web Development (JS/TS/React)
         "ts_ls",
         "html",
         "cssls",
@@ -30,6 +30,9 @@ return {
         -- Shell
         "bashls",
 
+        -- SQL
+        "sqlls",
+
         -- DevOps/Infrastructure
         "dockerls",
         "docker_compose_language_service",
@@ -39,6 +42,9 @@ return {
 
         -- Documentation
         "marksman",
+
+        -- Spelling/Typos
+        "typos_lsp",
 
         -- Config Files
         "taplo", -- TOML
@@ -71,6 +77,8 @@ return {
         "goimports",
         "shfmt",
         "yamlfmt",
+        "sql-formatter",
+        "biome", -- Fast JS/TS formatter + linter
 
         -- Linters
         "eslint_d",
