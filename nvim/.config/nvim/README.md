@@ -168,6 +168,9 @@ After the initial setup, run the following commands in Neovim:
 
 " Sync Mason packages
 :Mason
+
+" Install/ensure Mason tools (formatters/linters/DAP)
+:MasonToolsInstall
 ```
 
 ### 5. GitHub Copilot Setup (Optional)
@@ -305,31 +308,42 @@ Follow the prompts to authenticate with your GitHub account.
 
 | Language | Server | Description |
 |----------|--------|-------------|
-| TypeScript/JavaScript | `ts_ls` | TypeScript language server |
-| Python | `pyright` | Python type checker |
-| Lua | `lua_ls` | Lua language server |
+| TypeScript/JavaScript | `ts_ls` | TS/JS (React/JSX/TSX) |
+| ESLint | `eslint` | Linting for TS/JS |
 | HTML | `html` | HTML language server |
 | CSS | `cssls` | CSS language server |
 | Tailwind CSS | `tailwindcss` | Tailwind intellisense |
 | Svelte | `svelte` | Svelte language server |
 | GraphQL | `graphql` | GraphQL language server |
-| Emmet | `emmet_ls` | Emmet abbreviations |
 | Prisma | `prismals` | Prisma schema |
-| ESLint | `eslint` | JavaScript linter |
-| Go | via LazyVim extra | Go language support |
-| JSON | via LazyVim extra | JSON language support |
-| Markdown | via LazyVim extra | Markdown support |
-| TOML | via LazyVim extra | TOML support |
-| CMake | via LazyVim extra | CMake support |
-| Nushell | via LazyVim extra | Nushell support |
-| Typst | via LazyVim extra | Typst support |
+| Emmet | `emmet_ls` | Emmet abbreviations |
+| JSON | `jsonls` | JSON language server |
+| SQL | `sqlls` | SQL completion/diagnostics |
+| YAML | `yamlls` | YAML language server |
+| TOML | `taplo` | TOML language server |
+| Markdown | `marksman` | Markdown language server |
+| Lua | `lua_ls` | Lua language server |
+| Python | `pyright` | Python type checker |
+| Go | `gopls` | Go language server |
+| Bash | `bashls` | Bash language server |
+| Docker | `dockerls` | Dockerfile language server |
+| Docker Compose | `docker_compose_language_service` | Compose files |
+| Terraform | `terraformls` | Terraform language server |
+| Helm | `helm_ls` | Helm charts |
+| Spellcheck | `typos_lsp` | Typos/spell diagnostics |
 
 ### Formatters
 
 | Formatter | Languages |
 |-----------|-----------|
 | Prettier | JS, TS, JSX, TSX, CSS, HTML, JSON, YAML, Markdown, GraphQL, Svelte |
+| Biome | Fast formatter + linter for JS/TS/JSX/TSX/JSON |
 | Stylua | Lua |
+| gofumpt | Go formatting |
+| goimports | Go imports/formatting |
+| shfmt | Shell formatting |
+| yamlfmt | YAML formatting |
+| sql-formatter | SQL formatting |
 
 ### Treesitter Parsers
 
