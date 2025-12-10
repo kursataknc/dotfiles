@@ -937,7 +937,7 @@ alias c = clear
 alias ll = ls -l
 alias lt = eza --tree --level=2 --long --icons --git
 alias v = nvim
-
+alias py = python3
 # ------------------------------------------------------------------------------
 # System & Tools
 # ------------------------------------------------------------------------------

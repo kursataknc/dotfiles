@@ -40,9 +40,11 @@ $env.VISUAL = "nvim"
 # Prompt (Starship)
 $env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship.toml")
 
-# Additional environment variables (uncomment as needed)
+# Additional environment variables
+$env.PYENV_ROOT = ($env.HOME | path join ".pyenv")
+
+# Uncomment as needed:
 # $env.GOPATH = ($env.HOME | path join "go")
-# $env.PYENV_ROOT = ($env.HOME | path join ".pyenv")
 # $env.KUBECONFIG = ($env.HOME | path join ".kube" "config")
 # $env.NIX_CONF_DIR = ($env.HOME | path join ".config" "nix")
 
@@ -51,7 +53,10 @@ $env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship.toml")
 # ==============================================================================
 # Priority order: items at the top take precedence
 
-$env.PATH = ($env.PATH | split row (char esep) | append [
+$env.PATH = ($env.PATH | split row (char esep) | prepend [
+    ($env.HOME | path join ".pyenv" "shims")             # Pyenv shims (highest priority)
+    ($env.HOME | path join ".pyenv" "bin")               # Pyenv binaries
+] | append [
     "/opt/homebrew/bin"                                  # Homebrew binaries
     "/opt/homebrew/sbin"                                 # Homebrew system binaries
     "/usr/local/bin"                                     # Local binaries
@@ -59,5 +64,4 @@ $env.PATH = ($env.PATH | split row (char esep) | append [
     ($env.HOME | path join ".local" "bin")               # User local binaries
     ($env.HOME | path join ".cargo" "bin")               # Rust/Cargo binaries
     # ($env.HOME | path join "go" "bin")                 # Go binaries
-    # ($env.HOME | path join ".pyenv" "bin")             # Pyenv binaries
 ] | uniq)
