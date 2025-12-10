@@ -3,8 +3,8 @@
 # ==============================================================================
 
 # Shell
-# command = /opt/homebrew/bin/nu --login
-command = /opt/homebrew/bin/tmux new-session -A -s main
+command = /opt/homebrew/bin/nu --login
+# command = /opt/homebrew/bin/tmux new-session -A -s main
 
 # Appearance
 theme = catppuccin-mocha
