@@ -2,19 +2,46 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      -- list of servers for mason to install
       ensure_installed = {
+        -- Web Development
         "ts_ls",
         "html",
         "cssls",
         "tailwindcss",
         "svelte",
-        "lua_ls",
-        "graphql",
         "emmet_ls",
-        "prismals",
-        "pyright",
         "eslint",
+
+        -- JSON/GraphQL/Prisma
+        "graphql",
+        "prismals",
+        "jsonls",
+
+        -- Python
+        "pyright",
+        "ruff",
+
+        -- Lua
+        "lua_ls",
+
+        -- Go
+        "gopls",
+
+        -- Shell
+        "bashls",
+
+        -- DevOps/Infrastructure
+        "dockerls",
+        "docker_compose_language_service",
+        "helm_ls",
+        "yamlls",
+        "terraformls",
+
+        -- Documentation
+        "marksman",
+
+        -- Config Files
+        "taplo", -- TOML
       },
     },
     dependencies = {
@@ -37,9 +64,25 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "prettier", -- prettier formatter
-        "stylua", -- lua formatter
+        -- Formatters
+        "prettier",
+        "stylua",
+        "gofumpt",
+        "goimports",
+        "shfmt",
+        "yamlfmt",
+
+        -- Linters
         "eslint_d",
+        "hadolint",
+        "shellcheck",
+        "markdownlint",
+        "golangci-lint",
+
+        -- DAP (Debug Adapters)
+        "debugpy",
+        "go-debug-adapter",
+        "js-debug-adapter",
       },
     },
     dependencies = {
