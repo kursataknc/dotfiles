@@ -1,4 +1,5 @@
 **/.DS_Store
+.omc/
 nushell/.config/nushell/history.txt
 nushell/.config/nushell/secrets.nu
 
