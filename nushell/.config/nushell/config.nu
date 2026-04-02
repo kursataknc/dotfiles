@@ -1009,3 +1009,8 @@ use ~/.cache/starship/init.nu
 
 # Direnv (suppress logs)
 $env.DIRENV_LOG_FORMAT = ""
+
+def --env "pyenv shell" [version: string] {
+    $env.PYENV_VERSION = $version
+}
+

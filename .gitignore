@@ -1,2 +1,3 @@
 **/.DS_Store
 nushell/.config/nushell/history.txt
+nushell/.config/nushell/secrets.nu

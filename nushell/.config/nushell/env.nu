@@ -42,6 +42,9 @@ $env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship.toml")
 
 # Additional environment variables
 $env.PYENV_ROOT = ($env.HOME | path join ".pyenv")
+# Secrets loaded from secrets.nu (not tracked by git)
+source secrets.nu
+
 
 # Uncomment as needed:
 # $env.GOPATH = ($env.HOME | path join "go")
@@ -63,5 +66,5 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     "/run/current-system/sw/bin"                         # Nix binaries
     ($env.HOME | path join ".local" "bin")               # User local binaries
     ($env.HOME | path join ".cargo" "bin")               # Rust/Cargo binaries
-    # ($env.HOME | path join "go" "bin")                 # Go binaries
+    ($env.HOME | path join "go" "bin")                   # Go binaries
 ] | uniq)

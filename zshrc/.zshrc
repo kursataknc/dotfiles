@@ -216,3 +216,5 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 # ==============================================================================
 # Auto-Warpify
 [[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}?'
+# Added by Antigravity
+export PATH="/Users/kursataknc/.antigravity/antigravity/bin:$PATH"
