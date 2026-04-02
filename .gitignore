@@ -1,3 +1,21 @@
 **/.DS_Store
 nushell/.config/nushell/history.txt
 nushell/.config/nushell/secrets.nu
+
+# Claude Code - ephemeral/personal data
+claude/.claude/history.jsonl
+claude/.claude/sessions/
+claude/.claude/projects/
+claude/.claude/image-cache/
+claude/.claude/backups/
+claude/.claude/file-history/
+claude/.claude/shell-snapshots/
+claude/.claude/session-env/
+claude/.claude/cache/
+claude/.claude/plans/
+claude/.claude/.session-stats.json
+claude/.claude/.omc/
+claude/.claude/plugins/cache/
+claude/.claude/plugins/data/
+claude/.claude/plugins/marketplaces/
+claude/.claude/mcp-needs-auth-cache.json
