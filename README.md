@@ -289,10 +289,28 @@ Both shells source these at startup. Shell-specific aliases and helper functions
 | `cat` | zsh | `bat` (replaces `cat`) |
 
 ### Tools
-- **Starship:** Cross-shell prompt
-- **Zoxide:** Smarter `cd` (`z <dir>`)
+- **Starship:** Cross-shell prompt (same `starship.toml` for both shells)
+- **Atuin:** Shared sqlite history — `Ctrl+R` returns the same results in zsh and nu
+- **Zoxide:** Smarter `cd` (`z <dir>`) — active in both shells
+- **FZF:** `Ctrl+T` (file picker) and `Alt+C` (cd to directory) in both shells
+- **Direnv:** `.envrc` auto-loaded in both shells
 - **Eza:** Modern `ls` replacement
 - **Bat:** Modern `cat` with syntax highlighting
+- **zsh-syntax-highlighting:** Inline command validation in zsh (nu has this built-in)
+
+### Shell Parity
+
+Switching between `nu` and `zsh` preserves workflow — history, directory jumping, fuzzy picker, prompt, and theme all behave identically. See `docs/shell-parity.md` for the full parity plan.
+
+| Binding | Action | Scope |
+| :--- | :--- | :--- |
+| `Ctrl+R` | Atuin history search | both |
+| `Ctrl+T` | FZF file picker → insert path | both |
+| `Alt+C` | FZF directory picker → `cd` | both |
+| `z <dir>` | Zoxide jump to frecent dir | both |
+| `jj` (insert) | Exit to normal mode | zsh only (nu limitation) |
+
+First run imports existing zsh history into atuin: `atuin import auto`.
 
 ---
 
