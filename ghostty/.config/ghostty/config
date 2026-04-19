@@ -29,9 +29,6 @@ clipboard-trim-trailing-spaces = true
 # Performance
 macos-non-native-fullscreen = true
 
-# Environment
-env = XDG_CONFIG_HOME=/Users/kursataknc/.config
-
 # Keybindings (macOS style)
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard

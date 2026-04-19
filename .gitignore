@@ -2,6 +2,7 @@
 .omc/
 nushell/.config/nushell/history.txt
 nushell/.config/nushell/secrets.nu
+zshrc/.config/zsh/secrets.zsh
 
 # Claude Code - ephemeral/personal data
 claude/.claude/history.jsonl
