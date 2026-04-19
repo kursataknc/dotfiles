@@ -158,3 +158,8 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 # ==============================================================================
 # Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# zsh-syntax-highlighting — must be sourced LAST per upstream docs
+if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi

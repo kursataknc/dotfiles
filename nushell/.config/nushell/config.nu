@@ -957,12 +957,7 @@ def --env cx [arg] {
 
 alias c = clear
 alias hms = home-manager switch
-alias as = aerospace
 alias asr = atuin scripts run
-
-def ff [] {
-    aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
-}
 
 # ==============================================================================
 # 5. ENVIRONMENT & TOOL INTEGRATIONS
