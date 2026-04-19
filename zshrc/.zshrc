@@ -101,9 +101,6 @@ if command -v atuin &> /dev/null; then eval "$(atuin init zsh)"; fi
 # Direnv
 if command -v direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 
-# iTerm2 Integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # Nix Daemon
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -157,9 +154,7 @@ f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
 # ==============================================================================
-# 9. WARP & FINAL HOOKS
+# 9. FINAL HOOKS
 # ==============================================================================
-# Auto-Warpify
-[[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}?'
-# Added by Antigravity
+# Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
