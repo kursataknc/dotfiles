@@ -19,4 +19,6 @@ claude/.claude/.omc/
 claude/.claude/plugins/cache/
 claude/.claude/plugins/data/
 claude/.claude/plugins/marketplaces/
+claude/.claude/plugins/installed_plugins.json
+claude/.claude/plugins/known_marketplaces.json
 claude/.claude/mcp-needs-auth-cache.json

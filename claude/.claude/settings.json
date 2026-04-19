@@ -48,8 +48,9 @@
     "imessage@claude-plugins-official": true,
     "goodmem@claude-plugins-official": true,
     "optibot@claude-plugins-official": true,
-    "opsera-devsecops@claude-plugins-official": true,
-    "mongodb@claude-plugins-official": true
+    "opsera-devsecops@claude-plugins-official": false,
+    "mongodb@claude-plugins-official": true,
+    "github@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "omc": {
@@ -59,5 +60,6 @@
       },
       "autoUpdate": true
     }
-  }
+  },
+  "model": "sonnet"
 }
