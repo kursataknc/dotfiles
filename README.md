@@ -78,7 +78,11 @@ stow karabiner  # Karabiner-Elements
 stow linearmouse # LinearMouse
 ```
 
-> **Note:** Secrets (API tokens etc.) are stored in `~/.config/nushell/secrets.nu` which is gitignored. Create this file manually on new machines.
+> **Note:** API tokens and other secrets live in gitignored files that mirror each shell's config:
+> - Zsh: `~/.config/zsh/secrets.zsh` (sourced from `.zshrc` if present)
+> - Nushell: `~/.config/nushell/secrets.nu` (sourced from `env.nu`)
+>
+> `install.sh` creates empty placeholders on first run. Add your `export FOO=...` (zsh) or `$env.FOO = "..."` (nu) entries after install.
 
 ---
 
@@ -264,15 +268,25 @@ Session data, history, image cache, backups, and plugin cache are gitignored.
 
 Supports both **Zsh** and **Nushell** with **Starship** prompt.
 
-### Common Aliases
+### Aliases
 
-| Alias | Description |
-| :--- | :--- |
-| `l` | List files (long format) |
-| `la` | List all files |
-| `v` | Open Neovim |
-| `c` | Clear terminal |
-| `..` | Go up one directory |
+Shared aliases live in two mirrored files (kept in sync manually):
+- `~/.config/zsh/aliases.zsh`
+- `~/.config/nushell/aliases.nu`
+
+Both shells source these at startup. Shell-specific aliases and helper functions stay in the main config (`.zshrc` / `config.nu`).
+
+| Alias | Scope | Description |
+| :--- | :--- | :--- |
+| `l` / `ll` / `lt` | both | `eza` based listing (long / plain / tree) |
+| `v` | both | Open Neovim |
+| `gc` / `gp` / `gst` / `glog` | both | Git commit / push / status / log |
+| `k` / `kg` / `kd` | both | Kubectl, get, describe |
+| `dco` / `dps` / `dx` | both | Docker compose / ps / exec |
+| `..` / `...` / `....` | zsh | Navigate up directories |
+| `cl` | zsh | Clear terminal |
+| `c` | nu | Clear terminal |
+| `cat` | zsh | `bat` (replaces `cat`) |
 
 ### Tools
 - **Starship:** Cross-shell prompt
