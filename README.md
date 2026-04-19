@@ -164,18 +164,21 @@ Treemux runs nvim-tree in a **separate tmux pane** with an isolated nvim instanc
 - **Theme:** Catppuccin Mocha (status bar at top)
 - **Mouse:** Enabled
 - **Clipboard:** System clipboard integration
+- **Auto-restore:** Sessions restored on tmux start (tmux-continuum)
+- **Turkish Q friendly:** Bindings avoid AltGr-only keys
 
 ### Plugin Ecosystem (TPM)
 
 | Plugin | Description |
 | :--- | :--- |
 | **tmux-resurrect** | Persist environment across restarts |
-| **tmux-continuum** | Auto-save every 15 mins |
+| **tmux-continuum** | Auto-save every 15 mins + auto-restore on start |
 | **tmux-sessionx** | Session manager with preview |
 | **treemux** | File tree explorer sidebar |
 | **catppuccin** | Theme |
 | **tmux-fzf** | Fuzzy finder menus |
 | **tmux-fzf-url** | Open URLs from terminal |
+| **tmux-yank** | System clipboard integration |
 | **tmux-cpu/battery** | System stats in status bar |
 | **tmux-now-playing** | Currently playing music |
 
@@ -183,19 +186,57 @@ First-time setup: open tmux and press `Prefix` + `I` to install plugins.
 
 ### Key Bindings
 
+All keys below are pressed after `Prefix` (`Ctrl + A`).
+
+#### Session & Window
+
 | Key | Action |
 | :--- | :--- |
-| `Prefix` + `\|` | Split horizontally |
-| `Prefix` + `s` | Split vertically |
-| `Prefix` + `h/j/k/l` | Navigate panes |
-| `Prefix` + `H/L` | Previous/Next window |
-| `Prefix` + `z` | Zoom pane |
-| `Prefix` + `o` | SessionX (session manager) |
-| `Prefix` + `Tab` | Toggle treemux |
-| `Prefix` + `Space` | Interactive menu |
-| `Prefix` + `F` | FZF menu |
-| `Prefix` + `u` | Open URLs |
-| `Prefix` + `r` | Reload config |
+| `c` | New window (current path) |
+| `Ctrl+C` | New window (home dir) |
+| `Ctrl+D` | Detach from session |
+| `Ctrl+A` | Toggle last window |
+| `H` / `L` | Previous / Next window |
+| `"` | Choose window (interactive) |
+| `w` / `Ctrl+W` | List windows |
+| `r` | Rename current window |
+| `R` | Reload tmux config |
+| `S` | Choose session |
+| `o` | SessionX (fuzzy session manager) |
+| `Ctrl+X` | Lock server |
+
+#### Pane Management
+
+| Key | Action |
+| :--- | :--- |
+| `\|` | Split window (horizontal default) |
+| `v` | Split horizontally (current path) |
+| `s` | Split vertically (current path) |
+| `h` `j` `k` `l` | Navigate panes (repeatable within 500ms) |
+| `,` / `.` | Resize pane left / right (repeatable) |
+| `-` / `=` | Resize pane down / up (repeatable) |
+| `z` | Toggle pane zoom |
+| `x` | Kill current pane |
+| `X` | Swap pane down |
+| `N` | Swap pane up |
+| `e` | Toggle synchronize-panes (echo to all) |
+| `P` | Toggle pane border status |
+| `K` | Send `clear` + Enter |
+| `Ctrl+L` | Refresh client |
+
+#### Plugins & Utilities
+
+| Key | Action |
+| :--- | :--- |
+| `Tab` | Toggle treemux sidebar |
+| `Space` | Interactive menu (tmux-menus) |
+| `F` | FZF menu (tmux-fzf) |
+| `u` | Open URLs with FZF |
+| `y` | Copy to system clipboard (in copy mode) |
+| `Y` | Copy current pane's working directory |
+| `:` | tmux command prompt |
+
+> **Note on overrides:** `tmux-yank` plugin binds `Y` and `y` after your config loads, so those keys serve clipboard actions rather than the usual tmux defaults.
 
 ---
 
