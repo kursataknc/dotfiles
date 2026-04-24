@@ -1,0 +1,26 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/kursataknc/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-04-24T15:12:07.348Z"
+  },
+  "omc": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
+    },
+    "installLocation": "/Users/kursataknc/.claude/plugins/marketplaces/omc",
+    "lastUpdated": "2026-04-24T15:12:06.847Z"
+  },
+  "superpowers-dev": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/obra/superpowers.git"
+    },
+    "installLocation": "/Users/kursataknc/.claude/plugins/marketplaces/superpowers-dev",
+    "lastUpdated": "2026-04-01T01:40:03.783Z"
+  }
+}
