@@ -61,6 +61,17 @@ for pkg in "${PACKAGES[@]}"; do
 done
 
 # ==============================================================================
+# Git clean filter — normalizes Claude Code plugin state files on commit so
+# ephemeral metadata (timestamps, scope churn) doesn't pollute diffs.
+# Registered per-repo to avoid affecting other repositories.
+# ==============================================================================
+if [ -d "$DOTFILES_DIR/.git" ] && command -v jq >/dev/null 2>&1; then
+    echo "Registering git clean filter for plugin state..."
+    git -C "$DOTFILES_DIR" config --local filter.normalize-plugins.clean \
+        "$DOTFILES_DIR/scripts/normalize-plugins.sh"
+fi
+
+# ==============================================================================
 # macOS shell integration — make nushell the login shell system-wide.
 # Safe to re-run: each step is idempotent.
 # ==============================================================================

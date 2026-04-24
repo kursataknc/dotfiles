@@ -1,0 +1,2 @@
+claude/.claude/plugins/installed_plugins.json filter=normalize-plugins
+claude/.claude/plugins/known_marketplaces.json filter=normalize-plugins
