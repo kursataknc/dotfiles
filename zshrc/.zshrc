@@ -3,7 +3,7 @@
 # ==============================================================================
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
-export EDITOR="/opt/homebrew/bin/nvim" # Varsayılan editör
+export EDITOR="nvim" # PATH'ten resolve edilir (cross-platform)
 export GOPATH="$HOME/go"
 export PYENV_ROOT="$HOME/.pyenv"
 export KUBECONFIG=~/.kube/config
@@ -44,13 +44,23 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# ZSH Autosuggestions (Manuel yükleme)
-if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    bindkey '^w' autosuggest-execute
-    bindkey '^e' autosuggest-accept
-    bindkey '^u' autosuggest-toggle
+# ZSH Autosuggestions — try Homebrew (macOS) then Linux distro paths
+_zsh_autosug=""
+if command -v brew &> /dev/null; then
+    _zsh_autosug="$(brew --prefix 2>/dev/null)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
+for _p in "$_zsh_autosug" \
+    "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+    "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"; do
+    if [ -n "$_p" ] && [ -f "$_p" ]; then
+        source "$_p"
+        bindkey '^w' autosuggest-execute
+        bindkey '^e' autosuggest-accept
+        bindkey '^u' autosuggest-toggle
+        break
+    fi
+done
+unset _zsh_autosug _p
 
 # ==============================================================================
 # 4. COMPLETIONS & KEYBINDINGS
@@ -131,7 +141,11 @@ alias ltree="eza --tree --level=2 --icons --git"
 alias http="xh"
 
 # Terminal fun (requires a running tmux session)
-alias mat='osascript -e "tell application \"System Events\" to key code 126 using {command down}" && tmux neww "cmatrix"'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias mat='osascript -e "tell application \"System Events\" to key code 126 using {command down}" && tmux neww "cmatrix"'
+else
+    alias mat='tmux neww "cmatrix"'
+fi
 
 # ==============================================================================
 # 8. FUNCTIONS
@@ -150,7 +164,16 @@ alias rr='ranger'
 
 cx() { cd "$@" && l; }
 fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
-f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
+# Clipboard wrapper — pbcopy on macOS, wl-copy/xclip on Linux
+_clipcopy() {
+    if command -v pbcopy &> /dev/null; then pbcopy
+    elif command -v wl-copy &> /dev/null; then wl-copy
+    elif command -v xclip &> /dev/null; then xclip -selection clipboard
+    elif command -v xsel &> /dev/null; then xsel --clipboard --input
+    else cat
+    fi
+}
+f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | _clipcopy }
 fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
 # ==============================================================================
@@ -160,6 +183,16 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # zsh-syntax-highlighting — must be sourced LAST per upstream docs
-if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-    source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+_zsh_synhi=""
+if command -v brew &> /dev/null; then
+    _zsh_synhi="$(brew --prefix 2>/dev/null)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+for _p in "$_zsh_synhi" \
+    "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+    "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"; do
+    if [ -n "$_p" ] && [ -f "$_p" ]; then
+        source "$_p"
+        break
+    fi
+done
+unset _zsh_synhi _p

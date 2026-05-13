@@ -2,9 +2,10 @@
 # GHOSTTY TERMINAL CONFIGURATION
 # ==============================================================================
 
-# Shell
-command = /opt/homebrew/bin/tmux new-session -A -s main
-# command = /opt/homebrew/bin/nu --login
+# Shell — let ghostty resolve `tmux`/`nu` from PATH so the config is
+# cross-platform (Homebrew on macOS, /usr/bin/ on Linux distros).
+command = tmux new-session -A -s main
+# command = nu --login
 
 # Appearance
 theme = catppuccin-mocha
@@ -26,10 +27,11 @@ cursor-style-blink = false
 mouse-hide-while-typing = true
 clipboard-trim-trailing-spaces = true
 
-# Performance
+# Performance (macOS-only; ignored on Linux)
 macos-non-native-fullscreen = true
 
-# Keybindings (macOS style)
+# Keybindings — `super` is Cmd on macOS / Super (Win) on Linux. Same binding
+# works for both; Ctrl-equivalent shortcuts can be added per-OS if desired.
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 keybind = super+n=new_window

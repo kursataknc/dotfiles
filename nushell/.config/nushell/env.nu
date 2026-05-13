@@ -54,17 +54,25 @@ source secrets.nu
 # ==============================================================================
 # 3. PATH CONFIGURATION
 # ==============================================================================
-# Priority order: items at the top take precedence
+# Priority order: items at the top take precedence.
+# OS-specific paths are gated so the same config works on macOS and Linux.
+
+let mac_paths = if $nu.os-info.name == "macos" {
+    ["/opt/homebrew/bin", "/opt/homebrew/sbin"]            # Homebrew (Apple Silicon)
+} else { [] }
+
+let nix_paths = if ("/run/current-system/sw/bin" | path exists) {
+    ["/run/current-system/sw/bin"]                         # Nix system profile (NixOS / nix-darwin)
+} else { [] }
 
 $env.PATH = ($env.PATH | split row (char esep) | prepend [
-    ($env.HOME | path join ".pyenv" "shims")             # Pyenv shims (highest priority)
-    ($env.HOME | path join ".pyenv" "bin")               # Pyenv binaries
-] | append [
-    "/opt/homebrew/bin"                                  # Homebrew binaries
-    "/opt/homebrew/sbin"                                 # Homebrew system binaries
-    "/usr/local/bin"                                     # Local binaries
-    "/run/current-system/sw/bin"                         # Nix binaries
-    ($env.HOME | path join ".local" "bin")               # User local binaries
-    ($env.HOME | path join ".cargo" "bin")               # Rust/Cargo binaries
-    ($env.HOME | path join "go" "bin")                   # Go binaries
+    ($env.HOME | path join ".pyenv" "shims")               # Pyenv shims (highest priority)
+    ($env.HOME | path join ".pyenv" "bin")                 # Pyenv binaries
+] | append $mac_paths
+  | append ["/usr/local/bin"]                              # Local binaries
+  | append $nix_paths
+  | append [
+    ($env.HOME | path join ".local" "bin")                 # User local binaries
+    ($env.HOME | path join ".cargo" "bin")                 # Rust/Cargo binaries
+    ($env.HOME | path join "go" "bin")                     # Go binaries
 ] | uniq)

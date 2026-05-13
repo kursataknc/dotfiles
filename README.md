@@ -1,8 +1,9 @@
 # Dotfiles
 
-An opinionated, performance-oriented **macOS** development environment managed with **GNU Stow**. Centered around a modern terminal workflow built from **Ghostty**, **Tmux**, **Nushell**/**Zsh**, **Neovim (LazyVim)**, and **Claude Code**.
+An opinionated, performance-oriented development environment managed with **GNU Stow**. Centered around a modern terminal workflow built from **Ghostty**, **Tmux**, **Nushell**/**Zsh**, **Neovim (LazyVim)**, and **Claude Code**. Primary target is **macOS**; the shared configs (everything except `karabiner` and `linearmouse`) also run on **Linux** via `install-linux.sh`.
 
 ![macOS](https://img.shields.io/badge/OS-macOS-white)
+![Linux](https://img.shields.io/badge/OS-Linux-yellow)
 ![Shell](https://img.shields.io/badge/Shell-Zsh%20%2F%20Nushell-green)
 ![Terminal](https://img.shields.io/badge/Terminal-Ghostty-black)
 ![Multiplexer](https://img.shields.io/badge/Multiplexer-Tmux-blue)
@@ -88,6 +89,30 @@ echo "$(which nu)" | sudo tee -a /etc/shells
 # (Zsh is shipped with macOS; no action needed)
 ```
 
+### Linux (Arch / CachyOS / Manjaro)
+
+All packages **except** `karabiner` and `linearmouse` work on Linux. The macOS-specific `install.sh` (uses `dscl`, `launchctl`, hardcoded `/opt/homebrew/bin/nu`) is replaced by `install-linux.sh`.
+
+```bash
+# All deps live in the official repos — no AUR helper required
+sudo pacman -S --needed \
+    stow git \
+    ghostty tmux neovim \
+    nushell starship zsh zsh-syntax-highlighting zsh-autosuggestions \
+    atuin zoxide fzf fd ripgrep bat eza yq jq github-cli lazygit \
+    direnv pyenv kubectl kubectx docker
+```
+
+Nerd Font (icons in tmux/nvim/Starship):
+
+```bash
+sudo pacman -S --needed ttf-jetbrains-mono-nerd
+```
+
+Then proceed to `./install-linux.sh` in the [Installation](#installation) step below.
+
+> **Other distros:** map the package names to your package manager (apt, dnf, zypper, nix). `install-linux.sh` itself is distro-agnostic — it only requires `stow`, `bash`, `getent`, and the optional tools the configs call into.
+
 ---
 
 ## Installation
@@ -97,10 +122,15 @@ echo "$(which nu)" | sudo tee -a /etc/shells
 ```bash
 git clone https://github.com/kursataknc/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+
+# macOS — runs the full macOS shell-integration flow (dscl, launchctl, LaunchAgent)
 ./install.sh
+
+# Linux — same stow setup, no macOS-only steps
+./install-linux.sh
 ```
 
-`install.sh` does two things:
+`install.sh` / `install-linux.sh` does two things:
 
 1. **Creates gitignored placeholders** that the shell configs source:
    - `~/.config/nushell/secrets.nu`
