@@ -57,12 +57,10 @@ for pkg in "${PACKAGES[@]}"; do
     fi
 done
 
-# Git clean filter — normalizes Claude Code plugin state files on commit
-if [ -d "$DOTFILES_DIR/.git" ] && command -v jq >/dev/null 2>&1; then
-    echo "Registering git clean filter for plugin state..."
-    git -C "$DOTFILES_DIR" config --local filter.normalize-plugins.clean \
-        "$DOTFILES_DIR/scripts/normalize-plugins.sh"
-fi
+# Claude Code marketplaces + plugins — installed per-machine from manifests.
+# Plugin state JSON (installed_plugins.json, known_marketplaces.json) contains
+# absolute paths and is gitignored; the manifest is the cross-platform truth.
+"$DOTFILES_DIR/scripts/bootstrap-claude-plugins.sh"
 
 # Linux shell integration — register nu in /etc/shells and chsh to it.
 NU_PATH="$(command -v nu || true)"

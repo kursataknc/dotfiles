@@ -1,0 +1,6 @@
+# Claude Code marketplaces — sources fed to `claude plugin marketplace add`.
+# Each non-empty, non-comment line is passed verbatim to the CLI.
+# Comments (#) and blank lines are ignored.
+
+anthropics/claude-plugins-official
+https://github.com/Yeachan-Heo/oh-my-claudecode.git

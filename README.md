@@ -260,7 +260,9 @@ Each top-level directory is a **Stow package**. Stow creates symlinks from `~/do
 | Skills | 27 | refactor, code-review, mcp-builder, … |
 | Plugins | 50+ | oh-my-claudecode, context7, superpowers, … |
 
-**Not tracked:** sessions, history, projects, plugin cache, installed-plugins state, mcp auth cache (all gitignored). `settings.json` is the source of truth — `enabledPlugins` lists intent; Claude Code reinstalls from that on each machine.
+**Not tracked:** sessions, history, projects, plugin cache, installed-plugins state, marketplace state, mcp auth cache (all gitignored). These contain absolute paths and timestamps that can't be shared across machines.
+
+**Plugin bootstrap:** `manifests/claude-marketplaces.txt` and `manifests/claude-plugins.txt` are the cross-platform source of truth. `install.sh` / `install-linux.sh` call `scripts/bootstrap-claude-plugins.sh`, which runs `claude plugin marketplace add` and `claude plugin install` for each entry. Adding/removing a plugin = edit the manifest, commit, run the installer on each machine.
 
 ### Ghostty (`ghostty/`)
 
