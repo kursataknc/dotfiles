@@ -262,7 +262,7 @@ Each top-level directory is a **Stow package**. Stow creates symlinks from `~/do
 
 **Not tracked:** sessions, history, projects, plugin cache, installed-plugins state, marketplace state, mcp auth cache (all gitignored). These contain absolute paths and timestamps that can't be shared across machines.
 
-**Plugin bootstrap:** `manifests/claude-marketplaces.txt` and `manifests/claude-plugins.txt` are the cross-platform source of truth. `install.sh` / `install-linux.sh` call `scripts/bootstrap-claude-plugins.sh`, which runs `claude plugin marketplace add` and `claude plugin install` for each entry. Adding/removing a plugin = edit the manifest, commit, run the installer on each machine.
+**Plugin bootstrap:** `settings.json`'s `enabledPlugins` is the plugin source of truth; `manifests/claude-marketplaces.txt` holds marketplace clone sources (settings.json doesn't record those). `install.sh` / `install-linux.sh` call `scripts/bootstrap-claude-plugins.sh`, which runs `claude plugin marketplace add` for each line in the manifest and `claude plugin install` for every `enabledPlugins` entry set to `true`. Adding a plugin = `/plugin install …` (which writes to settings.json) and commit; new machines pick it up on next install.
 
 ### Ghostty (`ghostty/`)
 
