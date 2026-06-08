@@ -2,9 +2,11 @@
 # GHOSTTY TERMINAL CONFIGURATION
 # ==============================================================================
 
-# Shell — let ghostty resolve `tmux`/`nu` from PATH so the config is
-# cross-platform (Homebrew on macOS, /usr/bin/ on Linux distros).
-command = tmux new-session -A -s main
+# Shell — each window gets its OWN independent tmux session (auto-named
+# 0, 1, 2…). No shared `main` session, so windows never mirror each other
+# or collide on size. Closing the window ends its session.
+# `tmux`/`nu` are resolved from PATH (Homebrew on macOS, /usr/bin/ on Linux).
+command = tmux new-session
 # command = nu --login
 
 # Appearance
@@ -14,7 +16,7 @@ font-size = 10
 
 # Window & Background
 background-opacity = 0.95
-background-blur-radius = 20
+background-blur = 20
 window-decoration = true
 window-padding-x = 5
 window-padding-y = 5
