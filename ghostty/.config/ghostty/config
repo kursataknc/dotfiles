@@ -5,8 +5,11 @@
 # Shell — each window gets its OWN independent tmux session (auto-named
 # 0, 1, 2…). No shared `main` session, so windows never mirror each other
 # or collide on size. Closing the window ends its session.
-# `tmux`/`nu` are resolved from PATH (Homebrew on macOS, /usr/bin/ on Linux).
-command = tmux new-session
+# Ghostty runs `command` via a bare `bash --noprofile --norc`, so no rc file
+# ever sets PATH -- `tmux` isn't found even though it's installed. Prepend
+# the common Homebrew/Linux bin dirs explicitly instead of relying on PATH
+# from a shell profile that never gets sourced here.
+command = /bin/sh -c "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:$PATH exec tmux new-session"
 # command = nu --login
 
 # Appearance
