@@ -15,7 +15,7 @@ command = /bin/sh -c "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:$PATH exec 
 # Appearance
 theme = catppuccin-mocha
 font-family = "JetBrainsMono Nerd Font Mono"
-font-size = 10
+font-size = 12
 
 # Window & Background
 background-opacity = 0.95
