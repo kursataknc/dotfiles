@@ -990,3 +990,62 @@ $env.DIRENV_LOG_FORMAT = ""
 def --env "pyenv shell" [version: string] {
     $env.PYENV_VERSION = $version
 }
+
+# ------------------------------------------------------------------------------
+# SSH host listing — pretty-prints ~/.ssh/config entries as a table
+# ------------------------------------------------------------------------------
+#   sshlist        -> canli durum + gecikme sutunuyla (~0.3 sn)
+#   sshlist -k     -> ag kontrolu yapmadan, aninda
+def sshlist [
+    --kisa (-k)  # ag kontrolunu atla, sadece config'i listele
+] {
+    let hosts = (
+        open ~/.ssh/config
+        | lines
+        # Yorum satirlari (# ...) icinde gecen "Host " gibi metinler
+        # split row'u yaniltip sahte host bloklari uretebiliyor -- once at.
+        | where { |l| not ($l | str trim | str starts-with "#") }
+        | str join "\n"
+        | split row "Host "
+        | where { |b| ($b | str trim) != "" }
+        | enumerate
+        | each { |it|
+            let lines = ($it.item | lines | each { |l| $l | str trim } | where { |l| $l != "" })
+            let alias_name = ($lines | first | default "")
+            let hostname = ($lines | where { |l| $l | str starts-with "HostName " } | first | default "" | str replace "HostName " "")
+            let user = ($lines | where { |l| $l | str starts-with "User " } | first | default "" | str replace "User " "")
+            {sira: $it.index, alias: $alias_name, user: $user, hostname: $hostname}
+        }
+    )
+
+    if $kisa {
+        return ($hosts | reject sira)
+    }
+
+    $hosts
+    | par-each { |row|
+        # Erisilebilirlik: SSH portu gercekten aciliyor mu (asil olcut).
+        # macOS'ta -G baglanti zaman asimi, -w ise bosta bekleme suresi.
+        # -G olmadan cevap vermeyen bir host'ta ~150 sn asili kalir.
+        let acik = (do { ^nc -z -G 2 -w 2 $row.hostname 22 } | complete | get exit_code) == 0
+
+        # Gecikme: ping RTT'yi kendi olcup raporlar, bu yuzden surec
+        # baslatma maliyetinden etkilenmez. ICMP kapaliysa sessizce atlanir.
+        # Tek ornek oldugu icin kaba bir gostergedir.
+        let durum = if not $acik {
+            "🔴 kapali"
+        } else {
+            let p = (do { ^ping -c 1 -W 2000 $row.hostname } | complete)
+            let m = ($p.stdout | parse -r 'time=(?<ms>[0-9.]+)')
+            if ($m | is-empty) {
+                "🟢 acik"
+            } else {
+                let ms = ($m | first | get ms | into float | math round --precision 1)
+                $"🟢 ($ms)ms"
+            }
+        }
+        $row | insert durum $durum
+    }
+    | sort-by sira
+    | reject sira
+}
