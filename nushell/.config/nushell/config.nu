@@ -169,12 +169,12 @@ $env.config = {
     }
 
     table: {
-        mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+        mode: compact # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
         index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
         show_empty: true # show 'empty list' and 'empty record' placeholders for command output
         padding: { left: 1, right: 1 } # a left right padding of each column in a table
         trim: {
-            methodology: wrapping # wrapping or truncating
+            methodology: truncating # wrapping or truncating
             wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
             truncating_suffix: "..." # A suffix used by the 'truncating' methodology
         }
@@ -958,6 +958,12 @@ def --env cx [arg] {
 alias c = clear
 alias hms = home-manager switch
 alias asr = atuin scripts run
+
+# ls -la, columns reordered (type last, least useful). `alias` can't hold a
+# pipeline (only a single command call), so this needs to be a `def`.
+def lla [] {
+    ls -la | select name size modified type
+}
 
 # ==============================================================================
 # 5. ENVIRONMENT & TOOL INTEGRATIONS
