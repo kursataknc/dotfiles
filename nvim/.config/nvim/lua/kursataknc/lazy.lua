@@ -24,7 +24,6 @@ require("lazy").setup({
     },
     -- Import your plugins
     { import = "kursataknc.plugins" },
-    { import = "kursataknc.plugins.lsp" },
   },
   defaults = {
     lazy = false,
